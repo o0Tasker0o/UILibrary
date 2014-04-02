@@ -11,9 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
+    <ClInclude Include="Control.h" />
     <ClInclude Include="IniFileReader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Control.cpp" />
     <ClCompile Include="IniFileReader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

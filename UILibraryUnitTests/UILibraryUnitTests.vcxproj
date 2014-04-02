@@ -82,12 +82,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="CallbackTester.cpp" />
     <ClCompile Include="IniFileReaderUnitTests.cpp" />
+    <ClCompile Include="ButtonUnitTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UILibrary\UILibrary.vcxproj">
       <Project>{0d57bb79-e889-48bb-a5ad-e9bd52e8244b}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CallbackTester.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
