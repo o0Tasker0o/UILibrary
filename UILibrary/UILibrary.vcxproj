@@ -14,6 +14,7 @@
     <ClInclude Include="Button.h" />
     <ClInclude Include="Control.h" />
     <ClInclude Include="IniFileReader.h" />
+    <ClInclude Include="IniSection.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
