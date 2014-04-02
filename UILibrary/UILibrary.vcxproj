@@ -13,12 +13,14 @@
   <ItemGroup>
     <ClInclude Include="Button.h" />
     <ClInclude Include="Control.h" />
+    <ClInclude Include="ControlFactory.h" />
     <ClInclude Include="IniFileReader.h" />
     <ClInclude Include="IniSection.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Control.cpp" />
+    <ClCompile Include="ControlFactory.cpp" />
     <ClCompile Include="IniFileReader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

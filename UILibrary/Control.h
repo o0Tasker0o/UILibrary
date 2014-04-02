@@ -10,7 +10,6 @@ enum MouseButtonState
 class Control
 {
   public:
-      Control(unsigned int xPosition, unsigned int yPosition, unsigned int width, unsigned int height);
     ~Control() {};
 
     virtual void Update(unsigned int xPos, unsigned int yPos, MouseButtonState leftButtonState);
@@ -25,6 +24,8 @@ class Control
     unsigned int mWidth;
     unsigned int mHeight;
   protected:
+    Control(unsigned int xPosition, unsigned int yPosition, unsigned int width, unsigned int height);
+
     void *mpEnterObject;
     void(*mMouseEnterCallback)(void *object, Control *pCaller);
 
