@@ -21,10 +21,10 @@
     <ClCompile Include="IniFileReaderUnitTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ButtonUnitTests.cpp">
+    <ClCompile Include="CallbackTester.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CallbackTester.cpp">
+    <ClCompile Include="ControlUnitTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

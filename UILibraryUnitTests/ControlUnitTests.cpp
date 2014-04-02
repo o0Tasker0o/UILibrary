@@ -1,4 +1,4 @@
-#include "../UILibrary/Button.h"
+#include "../UILibrary/Control.h"
 #include "CallbackTester.h"
 
 using namespace System;
@@ -23,109 +23,109 @@ namespace UILibraryUnitTests
             unsigned int width = 3;
             unsigned int height = 4;
 
-            Button *pButton = new Button(xPosition, yPosition, width, height);
+			Control *pControl = new Control(xPosition, yPosition, width, height);
 
-            Assert::AreEqual(xPosition, pButton->mXPosition);
-            Assert::AreEqual(yPosition, pButton->mYPosition);
-            Assert::AreEqual(width, pButton->mWidth);
-            Assert::AreEqual(height, pButton->mHeight);
+			Assert::AreEqual(xPosition, pControl->mXPosition);
+			Assert::AreEqual(yPosition, pControl->mYPosition);
+			Assert::AreEqual(width, pControl->mWidth);
+			Assert::AreEqual(height, pControl->mHeight);
 
-            delete pButton;
+			delete pControl;
         }
 
         [TestMethod]
         void MouseEnterIsNotCalledIfCallbackNotSet()
         {
-            Button *pButton = new Button(0, 0, 10U, 5U);
+			Control *pControl = new Control(0, 0, 10U, 5U);
 
             CallbackTester *pCallbackTester = new CallbackTester();
 
             Assert::AreEqual(false, pCallbackTester->mMouseEntered);
 
-            pButton->Update(0, 0);
+			pControl->Update(0, 0);
 
             Assert::AreEqual(false, pCallbackTester->mMouseEntered);
 
             delete pCallbackTester;
-            delete pButton;
+			delete pControl;
         }
 
         [TestMethod]
         void MouseEnterAndLeaveCallbacksAreCalledWhenMouseEntersAndLeavesButton()
         {
-            Button *pButton = new Button(0, 0, 10U, 5U);
+			Control *pControl = new Control(0, 0, 10U, 5U);
 
             CallbackTester *pCallbackTester = new CallbackTester();
             Assert::AreEqual(false, pCallbackTester->mMouseEntered);
             Assert::AreEqual(false, pCallbackTester->mMouseLeft);
 
-            pButton->SetMouseEnterCallback(pCallbackTester, &CallbackTester::MouseEnterCallbackCaller);
-            pButton->SetMouseLeaveCallback(pCallbackTester, &CallbackTester::MouseLeaveCallbackCaller);
+			pControl->SetMouseEnterCallback(pCallbackTester, &CallbackTester::MouseEnterCallbackCaller);
+			pControl->SetMouseLeaveCallback(pCallbackTester, &CallbackTester::MouseLeaveCallbackCaller);
 
             //Move the mouse into the top left corner of the button
-            pButton->Update(0, 0);
+			pControl->Update(0, 0);
             Assert::AreEqual(true, pCallbackTester->mMouseEntered);
             Assert::AreEqual(false, pCallbackTester->mMouseLeft);
             pCallbackTester->mMouseEntered = false;
 
             //Move the mouse beyond the right of the button
-            pButton->Update(10, 0);
+			pControl->Update(10, 0);
             Assert::AreEqual(false, pCallbackTester->mMouseEntered);
             Assert::AreEqual(true, pCallbackTester->mMouseLeft);
             pCallbackTester->mMouseLeft = false;
 
             //Move the mouse back into the top left corner of the button
-            pButton->Update(0, 0);
+			pControl->Update(0, 0);
             Assert::AreEqual(true, pCallbackTester->mMouseEntered);
             Assert::AreEqual(false, pCallbackTester->mMouseLeft);
             pCallbackTester->mMouseEntered = false;
 
             //Move the mouse below the button
-            pButton->Update(0, 6);
+			pControl->Update(0, 6);
             Assert::AreEqual(false, pCallbackTester->mMouseEntered);
             Assert::AreEqual(true, pCallbackTester->mMouseLeft);
 
             delete pCallbackTester;
-            delete pButton;
+			delete pControl;
         }
 
         [TestMethod]
         void MouseEnterAndLeaveCallbacksAreNotCalledUnlessTheMouseEntersOrLeavesTheButton()
         {
-            Button *pButton = new Button(0, 0, 10U, 5U);
+			Control *pControl = new Control(0, 0, 10U, 5U);
 
             CallbackTester *pCallbackTester = new CallbackTester();
             Assert::AreEqual(false, pCallbackTester->mMouseEntered);
             Assert::AreEqual(false, pCallbackTester->mMouseLeft);
 
-            pButton->SetMouseEnterCallback(pCallbackTester, &CallbackTester::MouseEnterCallbackCaller);
-            pButton->SetMouseLeaveCallback(pCallbackTester, &CallbackTester::MouseLeaveCallbackCaller);
+			pControl->SetMouseEnterCallback(pCallbackTester, &CallbackTester::MouseEnterCallbackCaller);
+			pControl->SetMouseLeaveCallback(pCallbackTester, &CallbackTester::MouseLeaveCallbackCaller);
 
             //Move the mouse into the top left corner of the button
-            pButton->Update(0, 0);
+			pControl->Update(0, 0);
             Assert::AreEqual(true, pCallbackTester->mMouseEntered);
             Assert::AreEqual(false, pCallbackTester->mMouseLeft);
             pCallbackTester->mMouseEntered = false;
 
             //Move the mouse to another position inside the button
-            pButton->Update(1, 1);
+			pControl->Update(1, 1);
             Assert::AreEqual(false, pCallbackTester->mMouseEntered);
             Assert::AreEqual(false, pCallbackTester->mMouseLeft);
             pCallbackTester->mMouseEntered = false;
 
             //Move the mouse to the right of the button
-            pButton->Update(10, 0);
+			pControl->Update(10, 0);
             Assert::AreEqual(false, pCallbackTester->mMouseEntered);
             Assert::AreEqual(true, pCallbackTester->mMouseLeft);
             pCallbackTester->mMouseLeft = false;
 
             //Move the mouse below the button
-            pButton->Update(0, 6);
+			pControl->Update(0, 6);
             Assert::AreEqual(false, pCallbackTester->mMouseEntered);
             Assert::AreEqual(false, pCallbackTester->mMouseLeft);
 
             delete pCallbackTester;
-            delete pButton;
+			delete pControl;
         }
     };
 }

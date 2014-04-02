@@ -84,7 +84,7 @@
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="CallbackTester.cpp" />
     <ClCompile Include="IniFileReaderUnitTests.cpp" />
-    <ClCompile Include="ButtonUnitTests.cpp" />
+    <ClCompile Include="ControlUnitTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UILibrary\UILibrary.vcxproj">
