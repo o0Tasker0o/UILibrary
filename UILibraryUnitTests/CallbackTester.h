@@ -11,9 +11,11 @@ class CallbackTester
 
     static void MouseEnterCallbackCaller(void *object, Control *pCaller);
     static void MouseLeaveCallbackCaller(void *object, Control *pCaller);
+    static void MouseClickedCallbackCaller(void *object, Control *pCaller);
 
     bool mMouseEntered;
     bool mMouseLeft;
+    bool mMouseClicked;
 };
 
 #endif

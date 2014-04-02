@@ -9,7 +9,7 @@ public:
     Button(int xPosition, int yPosition, unsigned int width, unsigned int height);
     ~Button();
 
-    virtual void Update(unsigned int xPos, unsigned int yPos);
+    virtual void Update(unsigned int xPos, unsigned int yPos, MouseButtonState leftButtonState);
 };
 
 #endif

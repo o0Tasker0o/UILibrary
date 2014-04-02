@@ -11,7 +11,7 @@ Button::~Button()
 {
 }
 
-void Button::Update(unsigned int xPos, unsigned int yPos)
+void Button::Update(unsigned int xPos, unsigned int yPos, MouseButtonState leftButtonState)
 {
-    Control::Update(xPos, yPos);
+    Control::Update(xPos, yPos, leftButtonState);
 }

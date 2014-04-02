@@ -3,7 +3,10 @@
 
 Control::Control(unsigned int xPosition, unsigned int yPosition, unsigned int width, unsigned int height) :
             mMouseEnterCallback(NULL),
-            mMouseIsInsideControl(false)
+            mMouseLeaveCallback(NULL),
+            mMouseClickedCallback(NULL),
+            mMouseIsInsideControl(false),
+            mPreviousLeftButtonState(MouseButtonState::MOUSEUP)
 {
     mXPosition = xPosition;
     mYPosition = yPosition;
@@ -24,11 +27,25 @@ void Control::SetMouseLeaveCallback(void *pLeaveObject, void(*mouseLeaveFunc)(vo
     mMouseLeaveCallback = mouseLeaveFunc;
 }
 
-void Control::Update(unsigned int xPos, unsigned int yPos)
+void Control::SetMouseClickedCallback(void *pClickedObject, void(*mouseClickedFunc)(void *object, Control *pCaller))
+{
+    mpClickedObject = pClickedObject;
+    mMouseClickedCallback = mouseClickedFunc;
+}
+
+void Control::Update(unsigned int xPos, unsigned int yPos, MouseButtonState leftButtonState)
 {
     if (xPos >= mXPosition && xPos < mXPosition + mWidth &&
         yPos >= mYPosition && yPos < mYPosition + mHeight)
     {
+        if (mPreviousLeftButtonState == MouseButtonState::MOUSEDOWN && leftButtonState == MouseButtonState::MOUSEUP)
+        {
+            if (NULL != mMouseClickedCallback)
+            {
+                mMouseClickedCallback(mpClickedObject, this);
+            }
+        }
+
         if (!mMouseIsInsideControl)
         {
             mMouseIsInsideControl = true;
@@ -51,4 +68,6 @@ void Control::Update(unsigned int xPos, unsigned int yPos)
             }
         }
     }
+
+    mPreviousLeftButtonState = leftButtonState;
 }
