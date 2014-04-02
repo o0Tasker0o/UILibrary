@@ -1,6 +1,7 @@
-#include "../UILibrary/ControlFactory.h"
-#include "../UILibrary/IniSection.h"
-#include "../UILibrary/Button.h"
+#include "ControlFactory.h"
+#include "IniSection.h"
+#include "Button.h"
+
 using namespace System;
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
 

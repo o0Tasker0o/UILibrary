@@ -1,4 +1,4 @@
-#include "../UILibrary/IniFileReader.h"
+#include "IniFileReader.h"
 
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
 

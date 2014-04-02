@@ -1,4 +1,4 @@
-#include "../UILibrary/IniSection.h"
+#include "IniSection.h"
 
 using namespace System;
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;

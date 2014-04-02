@@ -1,7 +1,7 @@
 #ifndef CALLBACKTESTER_H
 #define CALLBACKTESTER_H
 
-#include "../UILibrary/Control.h"
+#include "Control.h"
 
 class CallbackTester
 {
