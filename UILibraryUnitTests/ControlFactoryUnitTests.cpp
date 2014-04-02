@@ -1,6 +1,7 @@
 #include "ControlFactory.h"
 #include "IniSection.h"
 #include "Button.h"
+#include "CallbackTester.h"
 
 using namespace System;
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
@@ -33,14 +34,45 @@ namespace UILibraryUnitTests
 
             controlConfiguration.push_back(buttonSection);
 
-            std::vector<Control *> pLoadedControls = ControlFactory::LoadControls(controlConfiguration);
+            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration);
 
             Assert::AreEqual(1, (int) pLoadedControls.size());
 
-            Assert::AreEqual(1U, pLoadedControls[0]->mXPosition);
-            Assert::AreEqual(2U, pLoadedControls[0]->mYPosition);
-            Assert::AreEqual(3U, pLoadedControls[0]->mWidth);
-            Assert::AreEqual(4U, pLoadedControls[0]->mHeight);
+            Assert::AreEqual(1U, pLoadedControls[0].first->mXPosition);
+            Assert::AreEqual(2U, pLoadedControls[0].first->mYPosition);
+            Assert::AreEqual(3U, pLoadedControls[0].first->mWidth);
+            Assert::AreEqual(4U, pLoadedControls[0].first->mHeight);
+        }
+
+        [TestMethod]
+        void ControlFactoryReturnsControlWithLinkedView()
+        {
+            IniSection buttonSection;
+            buttonSection.sectionName = "Button";
+            buttonSection.AddProperty("xPosition", "0");
+            buttonSection.AddProperty("yPosition", "0");
+            buttonSection.AddProperty("width", "1");
+            buttonSection.AddProperty("height", "1");
+
+            std::vector<IniSection> controlConfiguration;
+
+            controlConfiguration.push_back(buttonSection);
+
+            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration);
+
+            Assert::AreEqual(1, (int)pLoadedControls.size());
+
+            CallbackTester *pCallbackTester = new CallbackTester();
+            Assert::AreEqual(false, pCallbackTester->mMouseClicked);
+
+            pLoadedControls[0].first->SetMouseClickedCallback(pCallbackTester, &CallbackTester::MouseClickedCallbackCaller);
+
+            pLoadedControls[0].second->Update(0, 0, MouseButtonState::MOUSEDOWN);
+            pLoadedControls[0].second->Update(0, 0, MouseButtonState::MOUSEUP);
+
+            Assert::AreEqual(true, pCallbackTester->mMouseClicked);
+
+            delete pCallbackTester;
         }
 
         [TestMethod]
@@ -54,14 +86,14 @@ namespace UILibraryUnitTests
 
             controlConfiguration.push_back(buttonSection);
 
-            std::vector<Control *> pLoadedControls = ControlFactory::LoadControls(controlConfiguration);
+            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration);
 
             Assert::AreEqual(1, (int)pLoadedControls.size());
 
-            Assert::AreEqual(1U, pLoadedControls[0]->mXPosition);
-            Assert::AreEqual(0U, pLoadedControls[0]->mYPosition);
-            Assert::AreEqual(0U, pLoadedControls[0]->mWidth);
-            Assert::AreEqual(0U, pLoadedControls[0]->mHeight);
+            Assert::AreEqual(1U, pLoadedControls[0].first->mXPosition);
+            Assert::AreEqual(0U, pLoadedControls[0].first->mYPosition);
+            Assert::AreEqual(0U, pLoadedControls[0].first->mWidth);
+            Assert::AreEqual(0U, pLoadedControls[0].first->mHeight);
         }
 
         [TestMethod]
@@ -75,14 +107,14 @@ namespace UILibraryUnitTests
 
             controlConfiguration.push_back(buttonSection);
 
-            std::vector<Control *> pLoadedControls = ControlFactory::LoadControls(controlConfiguration);
+            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration);
 
             Assert::AreEqual(1, (int)pLoadedControls.size());
 
-            Assert::AreEqual(0U, pLoadedControls[0]->mXPosition);
-            Assert::AreEqual(0U, pLoadedControls[0]->mYPosition);
-            Assert::AreEqual(0U, pLoadedControls[0]->mWidth);
-            Assert::AreEqual(0U, pLoadedControls[0]->mHeight);
+            Assert::AreEqual(0U, pLoadedControls[0].first->mXPosition);
+            Assert::AreEqual(0U, pLoadedControls[0].first->mYPosition);
+            Assert::AreEqual(0U, pLoadedControls[0].first->mWidth);
+            Assert::AreEqual(0U, pLoadedControls[0].first->mHeight);
         }
     };
 }

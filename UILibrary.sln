@@ -7,9 +7,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UILibrary", "UILibrary\UILi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UILibraryUnitTests", "UILibraryUnitTests\UILibraryUnitTests.vcxproj", "{9757CB21-B840-49A6-B057-9F322E543DD6}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UIViewLibrary", "UIViewLibrary\UIViewLibrary.vcxproj", "{78BA9C75-FBD2-4C81-879E-0EAC0B40334C}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UILibraryGuiApp", "UILibraryGuiApp\UILibraryGuiApp.vcxproj", "{39ED337B-06A7-4854-8AAB-0358C3F1337A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0D57BB79-E889-48BB-A5AD-E9BD52E8244B} = {0D57BB79-E889-48BB-A5AD-E9BD52E8244B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +26,6 @@ Global
 		{9757CB21-B840-49A6-B057-9F322E543DD6}.Debug|Win32.Build.0 = Debug|Win32
 		{9757CB21-B840-49A6-B057-9F322E543DD6}.Release|Win32.ActiveCfg = Release|Win32
 		{9757CB21-B840-49A6-B057-9F322E543DD6}.Release|Win32.Build.0 = Release|Win32
-		{78BA9C75-FBD2-4C81-879E-0EAC0B40334C}.Debug|Win32.ActiveCfg = Debug|Win32
-		{78BA9C75-FBD2-4C81-879E-0EAC0B40334C}.Debug|Win32.Build.0 = Debug|Win32
-		{78BA9C75-FBD2-4C81-879E-0EAC0B40334C}.Release|Win32.ActiveCfg = Release|Win32
-		{78BA9C75-FBD2-4C81-879E-0EAC0B40334C}.Release|Win32.Build.0 = Release|Win32
 		{39ED337B-06A7-4854-8AAB-0358C3F1337A}.Debug|Win32.ActiveCfg = Debug|Win32
 		{39ED337B-06A7-4854-8AAB-0358C3F1337A}.Debug|Win32.Build.0 = Debug|Win32
 		{39ED337B-06A7-4854-8AAB-0358C3F1337A}.Release|Win32.ActiveCfg = Release|Win32

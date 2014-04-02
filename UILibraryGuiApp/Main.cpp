@@ -21,6 +21,22 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT m, WPARAM wp, LPARAM lp)
 
     switch (m)
     {
+    case WM_LBUTTONDOWN:
+    {
+        RECT windowRect;
+
+        GetClientRect(hwnd, &windowRect);
+        gpGLView->Update(currentMouseX, currentMouseY, true);
+        break;
+    }
+    case WM_LBUTTONUP:
+    {
+        RECT windowRect;
+
+        GetClientRect(hwnd, &windowRect);
+        gpGLView->Update(currentMouseX, currentMouseY, false);
+    }
+        break;
     case WM_SIZE:
     {
         RECT windowRect;

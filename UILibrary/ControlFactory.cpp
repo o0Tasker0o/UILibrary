@@ -1,9 +1,10 @@
 #include "ControlFactory.h"
 #include "Button.h"
+#include "ButtonView.h"
 
-std::vector<Control *> ControlFactory::LoadControls(std::vector<IniSection> iniConfiguration)
+std::vector<std::pair<Control *, ControlView *>> ControlFactory::LoadControls(std::vector<IniSection> iniConfiguration)
 {
-    std::vector<Control *> loadedControls;
+    std::vector<std::pair<Control *, ControlView *>> loadedControls;
 
     std::vector<IniSection>::iterator iniSectionIterator = iniConfiguration.begin();
 
@@ -21,7 +22,12 @@ std::vector<Control *> ControlFactory::LoadControls(std::vector<IniSection> iniC
                                          atoi(widthString.c_str()),
                                          atoi(heightString.c_str()));
 
-            loadedControls.push_back(pButton);
+            ButtonView *pButtonView = new ButtonView(pButton);
+
+            std::pair<Button*, ButtonView*> controllerViewPair;
+            controllerViewPair.first = pButton;
+            controllerViewPair.second = pButtonView;
+            loadedControls.push_back(controllerViewPair);
         }
 
         ++iniSectionIterator;

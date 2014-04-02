@@ -30,6 +30,12 @@
     <ClInclude Include="ControlFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ButtonView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="IniFileReader.cpp">
@@ -42,6 +48,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ControlFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ButtonView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

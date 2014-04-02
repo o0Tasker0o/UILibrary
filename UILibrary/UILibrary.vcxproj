@@ -12,13 +12,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />
+    <ClInclude Include="ButtonView.h" />
     <ClInclude Include="Control.h" />
     <ClInclude Include="ControlFactory.h" />
+    <ClInclude Include="ControlView.h" />
     <ClInclude Include="IniFileReader.h" />
     <ClInclude Include="IniSection.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="ButtonView.cpp" />
     <ClCompile Include="Control.cpp" />
     <ClCompile Include="ControlFactory.cpp" />
     <ClCompile Include="IniFileReader.cpp" />
@@ -65,6 +68,9 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
