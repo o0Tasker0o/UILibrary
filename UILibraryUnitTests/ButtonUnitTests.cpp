@@ -226,5 +226,26 @@ namespace UILibraryUnitTests
             delete pCallbackTester;
             delete pButton;
         }
+
+        [TestMethod]
+        void ButtonIsFocusedIfMouseEntersButton()
+        {
+            Button *pButton = new Button(0, 0, 10U, 5U);
+            Assert::IsFalse(pButton->mIsFocused);
+
+            pButton->Update(0, 0, MouseButtonState::MOUSEUP);
+            Assert::IsTrue(pButton->mIsFocused);
+
+            pButton->Update(10, 0, MouseButtonState::MOUSEUP);
+            Assert::IsFalse(pButton->mIsFocused);
+
+            pButton->Update(0, 0, MouseButtonState::MOUSEDOWN);
+            Assert::IsTrue(pButton->mIsFocused);
+
+            pButton->Update(10, 0, MouseButtonState::MOUSEDOWN);
+            Assert::IsFalse(pButton->mIsFocused);
+
+            delete pButton;
+        }
     };
 }

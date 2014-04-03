@@ -12,30 +12,29 @@ GLView *gpGLView(NULL);
 int gLastMouseX(0);
 int gLastMouseY(0);
 
-bool gMiddleMouseDragging(false);
+bool gLeftMouseDown(false);
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT m, WPARAM wp, LPARAM lp)
 {
     int currentMouseX = LOWORD(lp);
     int currentMouseY = HIWORD(lp);
 
+    RECT windowRect;
+
+    GetClientRect(hwnd, &windowRect);
+
     switch (m)
     {
     case WM_LBUTTONDOWN:
-    {
-        RECT windowRect;
-
-        GetClientRect(hwnd, &windowRect);
-        gpGLView->Update(currentMouseX, currentMouseY, true);
+        gLeftMouseDown = true;
+        gpGLView->Update(currentMouseX, currentMouseY, gLeftMouseDown);
         break;
-    }
     case WM_LBUTTONUP:
-    {
-        RECT windowRect;
-
-        GetClientRect(hwnd, &windowRect);
-        gpGLView->Update(currentMouseX, currentMouseY, false);
-    }
+        gLeftMouseDown = false;
+        gpGLView->Update(currentMouseX, currentMouseY, gLeftMouseDown);
+        break;
+    case WM_MOUSEMOVE:
+        gpGLView->Update(currentMouseX, currentMouseY, gLeftMouseDown);
         break;
     case WM_SIZE:
     {

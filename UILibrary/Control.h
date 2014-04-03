@@ -23,6 +23,8 @@ class Control
 
     unsigned int mWidth;
     unsigned int mHeight;
+
+    bool mIsFocused;
   protected:
     Control(unsigned int xPosition, unsigned int yPosition, unsigned int width, unsigned int height);
 
@@ -36,7 +38,6 @@ class Control
     void(*mMouseClickedCallback)(void *object, Control *pCaller);
 
   private:
-    bool mMouseIsInsideControl;
     MouseButtonState mPreviousLeftButtonState;
 };
 

@@ -5,8 +5,8 @@ Control::Control(unsigned int xPosition, unsigned int yPosition, unsigned int wi
             mMouseEnterCallback(NULL),
             mMouseLeaveCallback(NULL),
             mMouseClickedCallback(NULL),
-            mMouseIsInsideControl(false),
-            mPreviousLeftButtonState(MouseButtonState::MOUSEUP)
+            mPreviousLeftButtonState(MouseButtonState::MOUSEUP),
+            mIsFocused(false)
 {
     mXPosition = xPosition;
     mYPosition = yPosition;
@@ -46,9 +46,9 @@ void Control::Update(unsigned int xPos, unsigned int yPos, MouseButtonState left
             }
         }
 
-        if (!mMouseIsInsideControl)
+        if (!mIsFocused)
         {
-            mMouseIsInsideControl = true;
+            mIsFocused = true;
 
             if (NULL != mMouseEnterCallback)
             {
@@ -58,9 +58,9 @@ void Control::Update(unsigned int xPos, unsigned int yPos, MouseButtonState left
     }
     else
     {
-        if (mMouseIsInsideControl)
+        if (mIsFocused)
         {
-            mMouseIsInsideControl = false;
+            mIsFocused = false;
 
             if (NULL != mMouseLeaveCallback)
             {
