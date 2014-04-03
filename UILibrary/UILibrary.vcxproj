@@ -18,6 +18,7 @@
     <ClInclude Include="ControlView.h" />
     <ClInclude Include="IniFileReader.h" />
     <ClInclude Include="IniSection.h" />
+    <ClInclude Include="Label.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
@@ -26,6 +27,7 @@
     <ClCompile Include="ControlFactory.cpp" />
     <ClCompile Include="ControlView.cpp" />
     <ClCompile Include="IniFileReader.cpp" />
+    <ClCompile Include="Label.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0D57BB79-E889-48BB-A5AD-E9BD52E8244B}</ProjectGuid>

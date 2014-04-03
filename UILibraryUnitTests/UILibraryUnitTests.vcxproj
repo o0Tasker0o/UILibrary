@@ -88,6 +88,7 @@
     <ClCompile Include="ButtonUnitTests.cpp" />
     <ClCompile Include="ControlFactoryUnitTests.cpp" />
     <ClCompile Include="IniSectionUnitTests.cpp" />
+    <ClCompile Include="LabelUnitTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UILibrary\UILibrary.vcxproj">
