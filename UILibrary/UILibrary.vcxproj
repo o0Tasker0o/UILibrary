@@ -24,6 +24,7 @@
     <ClCompile Include="ButtonView.cpp" />
     <ClCompile Include="Control.cpp" />
     <ClCompile Include="ControlFactory.cpp" />
+    <ClCompile Include="ControlView.cpp" />
     <ClCompile Include="IniFileReader.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

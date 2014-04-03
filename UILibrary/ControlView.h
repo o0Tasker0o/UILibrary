@@ -18,6 +18,12 @@ protected:
     ~ControlView() {}
 
     Control *mpControl;
+
+    const static float mpBaseColour[4];
+    const static float mpFocusedColour[4];
+    const static float mpClickedColour[4];
+    const static float mpShadowColour[4];
+    const static float mpHighlightColour[4];
 };
 
 #endif
