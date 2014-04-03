@@ -228,22 +228,27 @@ namespace UILibraryUnitTests
         }
 
         [TestMethod]
-        void ButtonIsFocusedIfMouseEntersButton()
+        void ButtonIsFocusedAndClickedOnMouseInteractions()
         {
             Button *pButton = new Button(0, 0, 10U, 5U);
             Assert::IsFalse(pButton->mIsFocused);
+            Assert::IsFalse(pButton->mIsClicked);
 
             pButton->Update(0, 0, MouseButtonState::MOUSEUP);
             Assert::IsTrue(pButton->mIsFocused);
+            Assert::IsFalse(pButton->mIsClicked);
 
             pButton->Update(10, 0, MouseButtonState::MOUSEUP);
             Assert::IsFalse(pButton->mIsFocused);
+            Assert::IsFalse(pButton->mIsClicked);
 
             pButton->Update(0, 0, MouseButtonState::MOUSEDOWN);
             Assert::IsTrue(pButton->mIsFocused);
+            Assert::IsTrue(pButton->mIsClicked);
 
             pButton->Update(10, 0, MouseButtonState::MOUSEDOWN);
             Assert::IsFalse(pButton->mIsFocused);
+            Assert::IsFalse(pButton->mIsClicked);
 
             delete pButton;
         }

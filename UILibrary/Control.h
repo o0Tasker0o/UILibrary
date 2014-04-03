@@ -25,6 +25,7 @@ class Control
     unsigned int mHeight;
 
     bool mIsFocused;
+    bool mIsClicked;
   protected:
     Control(unsigned int xPosition, unsigned int yPosition, unsigned int width, unsigned int height);
 

@@ -6,7 +6,8 @@ Control::Control(unsigned int xPosition, unsigned int yPosition, unsigned int wi
             mMouseLeaveCallback(NULL),
             mMouseClickedCallback(NULL),
             mPreviousLeftButtonState(MouseButtonState::MOUSEUP),
-            mIsFocused(false)
+            mIsFocused(false),
+            mIsClicked(false)
 {
     mXPosition = xPosition;
     mYPosition = yPosition;
@@ -35,9 +36,16 @@ void Control::SetMouseClickedCallback(void *pClickedObject, void(*mouseClickedFu
 
 void Control::Update(unsigned int xPos, unsigned int yPos, MouseButtonState leftButtonState)
 {
+    mIsClicked = false;
+
     if (xPos >= mXPosition && xPos < mXPosition + mWidth &&
         yPos >= mYPosition && yPos < mYPosition + mHeight)
     {
+        if (leftButtonState == MouseButtonState::MOUSEDOWN)
+        {
+            mIsClicked = true;
+        }
+
         if (mPreviousLeftButtonState == MouseButtonState::MOUSEDOWN && leftButtonState == MouseButtonState::MOUSEUP)
         {
             if (NULL != mMouseClickedCallback)
