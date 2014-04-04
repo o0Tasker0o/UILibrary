@@ -15,7 +15,7 @@ namespace UILibraryUnitTests
         };
 
         [TestMethod]
-        [DeploymentItem("..\\UILibraryUnitTests\\UnitTestDeploymentData\\empty.ini")]
+        [DeploymentItem("..\\UnitTestDeploymentData\\empty.ini")]
         void IniFileReaderReturnsEmptyVectorWhenLoadingEmptyFile()
         {
             Assert::IsTrue(System::IO::File::Exists("empty.ini"));
@@ -24,7 +24,7 @@ namespace UILibraryUnitTests
         }
 
         [TestMethod]
-        [DeploymentItem("..\\UILibraryUnitTests\\UnitTestDeploymentData\\single entry.ini")]
+        [DeploymentItem("..\\UnitTestDeploymentData\\single entry.ini")]
         void IniFileReaderReadsSingleIniEntry()
         {
             Assert::IsTrue(System::IO::File::Exists("single entry.ini"));
@@ -39,7 +39,7 @@ namespace UILibraryUnitTests
         }
 
         [TestMethod]
-        [DeploymentItem("..\\UILibraryUnitTests\\UnitTestDeploymentData\\single entry internal whitespace padded header.ini")]
+        [DeploymentItem("..\\UnitTestDeploymentData\\single entry internal whitespace padded header.ini")]
         void IniFileReaderReadsSingleIniEntryWithWhitespacePaddedHeader()
         {
             Assert::IsTrue(System::IO::File::Exists("single entry internal whitespace padded header.ini"));
@@ -54,7 +54,7 @@ namespace UILibraryUnitTests
         }
 
         [TestMethod]
-        [DeploymentItem("..\\UILibraryUnitTests\\UnitTestDeploymentData\\single entry external whitespace padded header.ini")]
+        [DeploymentItem("..\\UnitTestDeploymentData\\single entry external whitespace padded header.ini")]
         void IniFileReaderStripsWhitespaceFromHeaderTitle()
         {
             Assert::IsTrue(System::IO::File::Exists("single entry external whitespace padded header.ini"));
@@ -69,7 +69,7 @@ namespace UILibraryUnitTests
         }
 
         [TestMethod]
-        [DeploymentItem("..\\UILibraryUnitTests\\UnitTestDeploymentData\\multiple entries.ini")]
+        [DeploymentItem("..\\UnitTestDeploymentData\\multiple entries.ini")]
         void IniFileReaderReadsMultipleIniEntries()
         {
             Assert::IsTrue(System::IO::File::Exists("multiple entries.ini"));
@@ -90,7 +90,7 @@ namespace UILibraryUnitTests
         }
 
         [TestMethod]
-        [DeploymentItem("..\\UILibraryUnitTests\\UnitTestDeploymentData\\single entry with missing value.ini")]
+        [DeploymentItem("..\\UnitTestDeploymentData\\single entry with missing value.ini")]
         void IniFileReaderReadsSingleIniEntryWithMissingValue()
         {
             Assert::IsTrue(System::IO::File::Exists("single entry with missing value.ini"));
@@ -105,7 +105,7 @@ namespace UILibraryUnitTests
         }
 
         [TestMethod]
-        [DeploymentItem("..\\UILibraryUnitTests\\UnitTestDeploymentData\\value pair without header.ini")]
+        [DeploymentItem("..\\UnitTestDeploymentData\\value pair without header.ini")]
         void IniFileReaderReadsValuePairsWithNoHeader()
         {
             Assert::IsTrue(System::IO::File::Exists("value pair without header.ini"));
@@ -116,7 +116,7 @@ namespace UILibraryUnitTests
         }
 
         [TestMethod]
-        [DeploymentItem("..\\UILibraryUnitTests\\UnitTestDeploymentData\\single entry with noise after header.ini")]
+        [DeploymentItem("..\\UnitTestDeploymentData\\single entry with noise after header.ini")]
         void IniFileReaderTrimsNoiseAfterHeader()
         {
             Assert::IsTrue(System::IO::File::Exists("single entry with noise after header.ini"));
