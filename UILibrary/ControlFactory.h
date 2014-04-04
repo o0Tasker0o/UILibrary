@@ -7,10 +7,13 @@
 #include "IniSection.h"
 #include "ControlView.h"
 
+typedef std::pair<Control *, ControlView *> ControlPair;
+typedef std::vector<ControlPair> UiControls;
+
 class ControlFactory
 {
   public:
-    static std::vector<std::pair<Control *, ControlView *>> LoadControls(std::vector<IniSection> iniConfiguration, HWND hwnd);
+      static UiControls LoadControls(std::vector<IniSection> iniConfiguration, HWND hwnd);
   private:
     ControlFactory() {}
     ~ControlFactory() {}

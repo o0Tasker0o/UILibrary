@@ -1,12 +1,14 @@
 #include "IniFileReader.h"
 #include <Windows.h>
 
-std::vector<IniSection> IniFileReader::LoadFile(std::string filename)
+using namespace std;
+
+vector<IniSection> IniFileReader::LoadFile(string filename)
 {
     FILE *pIniFile(NULL);
     fopen_s(&pIniFile, filename.c_str(), "rb");
 
-    std::vector<IniSection> iniSections;
+    vector<IniSection> iniSections;
 
     if (NULL == pIniFile)
     {
@@ -19,7 +21,7 @@ std::vector<IniSection> IniFileReader::LoadFile(std::string filename)
 
     while (NULL != fgets(pFileBuffer, cMaxLineLength, pIniFile))
     {
-        std::string currentLine = TrimWhitespace(pFileBuffer);
+        string currentLine = TrimWhitespace(pFileBuffer);
 
         if ('[' == currentLine[0])
         {
@@ -42,7 +44,7 @@ std::vector<IniSection> IniFileReader::LoadFile(std::string filename)
     return iniSections;
 }
 
-std::string IniFileReader::TrimWhitespace(std::string inputString)
+string IniFileReader::TrimWhitespace(string inputString)
 {
     char const * const cWhiteSpace = " \r\n\t\f\v";
 
@@ -57,23 +59,23 @@ std::string IniFileReader::TrimWhitespace(std::string inputString)
     return inputString.substr(startOfLine, (endOfLine + 1) - startOfLine);
 }
 
-std::pair<std::string, std::string> IniFileReader::ParseKeyValuePair(std::string keyValuePairString)
+pair<string, string> IniFileReader::ParseKeyValuePair(string keyValuePairString)
 {
     int equalsPosition = keyValuePairString.find('=');
 
     if (equalsPosition < 0)
     {
-        std::pair<std::string, std::string> newProperty;
+        pair<string, string> newProperty;
         newProperty.first = keyValuePairString;
         newProperty.second = "";
 
         return newProperty;
     }
 
-    std::string name = keyValuePairString.substr(0, equalsPosition);
-    std::string value = keyValuePairString.substr(equalsPosition + 1);
+    string name = keyValuePairString.substr(0, equalsPosition);
+    string value = keyValuePairString.substr(equalsPosition + 1);
 
-    std::pair<std::string, std::string>newProperty;
+    pair<string, string>newProperty;
     newProperty.first = name;
     newProperty.second = value;
 

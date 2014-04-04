@@ -6,6 +6,7 @@
 
 using namespace System;
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
+using namespace std;
 
 namespace UILibraryUnitTests
 {
@@ -16,7 +17,7 @@ namespace UILibraryUnitTests
         [TestMethod]
         void ControlFactoryReturnsEmptyVectorWhenNoIniSectionsAreLoaded()
         {
-            std::vector<IniSection> controlConfiguration;
+            vector<IniSection> controlConfiguration;
 
             Assert::AreEqual(0, (int)ControlFactory::LoadControls(controlConfiguration, nullptr).size());
         }
@@ -31,11 +32,11 @@ namespace UILibraryUnitTests
             buttonSection.AddProperty("width", "3");
             buttonSection.AddProperty("height", "4");
 
-            std::vector<IniSection> controlConfiguration;
+            vector<IniSection> controlConfiguration;
 
             controlConfiguration.push_back(buttonSection);
 
-            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
+            UiControls pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
 
             Assert::AreEqual(1, (int) pLoadedControls.size());
 
@@ -48,7 +49,7 @@ namespace UILibraryUnitTests
         [TestMethod]
         void ControlFactoryReturnsLabelSpecifiedInIniSection()
         {
-            std::string testString = "test string";
+            string testString = "test string";
 
             IniSection buttonSection;
             buttonSection.sectionName = "Label";
@@ -57,11 +58,11 @@ namespace UILibraryUnitTests
             buttonSection.AddProperty("width", "3");
             buttonSection.AddProperty("text", testString);
 
-            std::vector<IniSection> controlConfiguration;
+            vector<IniSection> controlConfiguration;
 
             controlConfiguration.push_back(buttonSection);
 
-            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
+            UiControls pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
 
             Assert::AreEqual(1, (int)pLoadedControls.size());
 
@@ -81,11 +82,11 @@ namespace UILibraryUnitTests
             buttonSection.AddProperty("width", "1");
             buttonSection.AddProperty("height", "1");
 
-            std::vector<IniSection> controlConfiguration;
+            vector<IniSection> controlConfiguration;
 
             controlConfiguration.push_back(buttonSection);
 
-            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
+            UiControls pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
 
             Assert::AreEqual(1, (int)pLoadedControls.size());
 
@@ -109,11 +110,11 @@ namespace UILibraryUnitTests
             buttonSection.sectionName = "Button";
             buttonSection.AddProperty("xPosition", "1");
 
-            std::vector<IniSection> controlConfiguration;
+            vector<IniSection> controlConfiguration;
 
             controlConfiguration.push_back(buttonSection);
 
-            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
+            UiControls pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
 
             Assert::AreEqual(1, (int)pLoadedControls.size());
 
@@ -130,11 +131,11 @@ namespace UILibraryUnitTests
             buttonSection.sectionName = "Button";
             buttonSection.AddProperty("xPosition", "THIS IS NOT A NUMBER");
 
-            std::vector<IniSection> controlConfiguration;
+            vector<IniSection> controlConfiguration;
 
             controlConfiguration.push_back(buttonSection);
 
-            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
+            UiControls pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
 
             Assert::AreEqual(1, (int)pLoadedControls.size());
 

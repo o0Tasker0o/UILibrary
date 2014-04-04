@@ -1,5 +1,6 @@
 #include <Windows.h>
 #include <vector>
+#include "ControlFactory.h"
 #include "Control.h"
 #include "ControlView.h"
 
@@ -23,7 +24,7 @@ public:
 private:
     HDC mHDC;
 
-    std::vector<std::pair<Control *, ControlView *>> mControls;
+    UiControls mControls;
 };
 
 #endif

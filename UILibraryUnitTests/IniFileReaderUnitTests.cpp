@@ -1,6 +1,7 @@
 #include "IniFileReader.h"
 
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
+using namespace std;
 
 namespace UILibraryUnitTests
 {
@@ -29,7 +30,7 @@ namespace UILibraryUnitTests
         {
             Assert::IsTrue(System::IO::File::Exists("single entry.ini"));
 
-            std::vector<IniSection> readIniData = IniFileReader::LoadFile("single entry.ini");
+            vector<IniSection> readIniData = IniFileReader::LoadFile("single entry.ini");
 
             Assert::AreEqual(1, (int) readIniData.size());
             Assert::AreEqual(0, strcmp("ini header", readIniData[0].sectionName.c_str()));
@@ -44,7 +45,7 @@ namespace UILibraryUnitTests
         {
             Assert::IsTrue(System::IO::File::Exists("single entry internal whitespace padded header.ini"));
 
-            std::vector<IniSection> readIniData = IniFileReader::LoadFile("single entry internal whitespace padded header.ini");
+            vector<IniSection> readIniData = IniFileReader::LoadFile("single entry internal whitespace padded header.ini");
 
             Assert::AreEqual(1, (int)readIniData.size());
             Assert::AreEqual(0, strcmp("ini header", readIniData[0].sectionName.c_str()));
@@ -59,7 +60,7 @@ namespace UILibraryUnitTests
         {
             Assert::IsTrue(System::IO::File::Exists("single entry external whitespace padded header.ini"));
 
-            std::vector<IniSection> readIniData = IniFileReader::LoadFile("single entry external whitespace padded header.ini");
+            vector<IniSection> readIniData = IniFileReader::LoadFile("single entry external whitespace padded header.ini");
 
             Assert::AreEqual(1, (int)readIniData.size());
             Assert::AreEqual(0, strcmp("ini header", readIniData[0].sectionName.c_str()));
@@ -74,7 +75,7 @@ namespace UILibraryUnitTests
         {
             Assert::IsTrue(System::IO::File::Exists("multiple entries.ini"));
 
-            std::vector<IniSection> readIniData = IniFileReader::LoadFile("multiple entries.ini");
+            vector<IniSection> readIniData = IniFileReader::LoadFile("multiple entries.ini");
 
             Assert::AreEqual(2, (int)readIniData.size());
             Assert::AreEqual(0, strcmp("ini header 1", readIniData[0].sectionName.c_str()));
@@ -95,7 +96,7 @@ namespace UILibraryUnitTests
         {
             Assert::IsTrue(System::IO::File::Exists("single entry with missing value.ini"));
 
-            std::vector<IniSection> readIniData = IniFileReader::LoadFile("single entry with missing value.ini");
+            vector<IniSection> readIniData = IniFileReader::LoadFile("single entry with missing value.ini");
 
             Assert::AreEqual(1, (int)readIniData.size());
             Assert::AreEqual(0, strcmp("ini header", readIniData[0].sectionName.c_str()));
@@ -110,7 +111,7 @@ namespace UILibraryUnitTests
         {
             Assert::IsTrue(System::IO::File::Exists("value pair without header.ini"));
 
-            std::vector<IniSection> readIniData = IniFileReader::LoadFile("value pair without header.ini");
+            vector<IniSection> readIniData = IniFileReader::LoadFile("value pair without header.ini");
 
             Assert::AreEqual(0, (int)readIniData.size());
         }
@@ -121,7 +122,7 @@ namespace UILibraryUnitTests
         {
             Assert::IsTrue(System::IO::File::Exists("single entry with noise after header.ini"));
 
-            std::vector<IniSection> readIniData = IniFileReader::LoadFile("single entry with noise after header.ini");
+            vector<IniSection> readIniData = IniFileReader::LoadFile("single entry with noise after header.ini");
 
             Assert::AreEqual(1, (int)readIniData.size());
             Assert::AreEqual(0, strcmp("ini header", readIniData[0].sectionName.c_str()));

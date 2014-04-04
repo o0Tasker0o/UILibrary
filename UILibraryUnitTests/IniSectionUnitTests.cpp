@@ -2,13 +2,14 @@
 
 using namespace System;
 using namespace Microsoft::VisualStudio::TestTools::UnitTesting;
+using namespace std;
 
 namespace UILibraryUnitTests
 {
     [TestClass]
     public ref class UnitTest
     {
-    public: 
+      public: 
         [TestMethod]
         void IniSectionAddPropertyTest()
         {
@@ -16,8 +17,8 @@ namespace UILibraryUnitTests
 
             Assert::AreEqual(0U, testSection.propertyMap.size());
 
-            std::string inputKey = "a";
-            std::string inputValue = "b";
+            string inputKey = "a";
+            string inputValue = "b";
 
             testSection.AddProperty(inputKey, inputValue);
 

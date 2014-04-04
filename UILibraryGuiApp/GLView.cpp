@@ -1,6 +1,5 @@
 #include "GLView.h"
 #include "IniFileReader.h"
-#include "ControlFactory.h"
 #include <gl/GL.h>
 #include <gl/glu.h>
 
@@ -10,7 +9,7 @@ GLView::GLView(void) : mHDC(NULL)
 
 GLView::~GLView(void)
 {
-    std::vector<std::pair<Control *, ControlView *>>::iterator controlIterator = mControls.begin();
+    UiControls::iterator controlIterator = mControls.begin();
 
     while (controlIterator != mControls.end())
     {
@@ -65,7 +64,7 @@ void GLView::Render()
 
     glLoadIdentity();
 
-    std::vector<std::pair<Control *, ControlView *>>::iterator controlIterator = mControls.begin();
+    UiControls::iterator controlIterator = mControls.begin();
 
     while (controlIterator != mControls.end())
     {
@@ -80,7 +79,7 @@ void GLView::Update(int mouseX, int mouseY, bool leftButtonDown)
 {
     MouseButtonState leftButtonState = leftButtonDown ? MouseButtonState::MOUSEDOWN : MouseButtonState::MOUSEUP;
 
-    std::vector<std::pair<Control *, ControlView *>>::iterator controlIterator = mControls.begin();
+    UiControls::iterator controlIterator = mControls.begin();
 
     while (controlIterator != mControls.end())
     {

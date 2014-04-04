@@ -4,18 +4,20 @@
 #include "ButtonView.h"
 #include "LabelView.h"
 
-std::vector<std::pair<Control *, ControlView *>> ControlFactory::LoadControls(std::vector<IniSection> iniConfiguration, HWND hwnd)
-{
-    std::vector<std::pair<Control *, ControlView *>> loadedControls;
+using namespace std;
 
-    std::vector<IniSection>::iterator iniSectionIterator = iniConfiguration.begin();
+UiControls ControlFactory::LoadControls(vector<IniSection> iniConfiguration, HWND hwnd)
+{
+    UiControls loadedControls;
+
+    vector<IniSection>::iterator iniSectionIterator = iniConfiguration.begin();
 
     while (iniSectionIterator != iniConfiguration.end())
     {
-        std::string xPositionString = iniSectionIterator->propertyMap["xPosition"];
-        std::string yPositionString = iniSectionIterator->propertyMap["yPosition"];
-        std::string widthString = iniSectionIterator->propertyMap["width"];
-        std::string heightString = iniSectionIterator->propertyMap["height"];
+        string xPositionString = iniSectionIterator->propertyMap["xPosition"];
+        string yPositionString = iniSectionIterator->propertyMap["yPosition"];
+        string widthString = iniSectionIterator->propertyMap["width"];
+        string heightString = iniSectionIterator->propertyMap["height"];
 
         Control *pNewControl(NULL);
         ControlView *pNewControlView(NULL);
@@ -39,7 +41,7 @@ std::vector<std::pair<Control *, ControlView *>> ControlFactory::LoadControls(st
             pNewControlView = new LabelView((Label *) pNewControl, hwnd);
         }
 
-        std::pair<Control*, ControlView*> controllerViewPair;
+        ControlPair controllerViewPair;
         controllerViewPair.first = pNewControl;
         controllerViewPair.second = pNewControlView;
         loadedControls.push_back(controllerViewPair);
