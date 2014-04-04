@@ -17,7 +17,7 @@ namespace UILibraryUnitTests
         {
             std::vector<IniSection> controlConfiguration;
 
-            Assert::AreEqual(0, (int)ControlFactory::LoadControls(controlConfiguration).size());
+            Assert::AreEqual(0, (int)ControlFactory::LoadControls(controlConfiguration, nullptr).size());
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace UILibraryUnitTests
 
             controlConfiguration.push_back(buttonSection);
 
-            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration);
+            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
 
             Assert::AreEqual(1, (int) pLoadedControls.size());
 
@@ -58,7 +58,7 @@ namespace UILibraryUnitTests
 
             controlConfiguration.push_back(buttonSection);
 
-            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration);
+            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
 
             Assert::AreEqual(1, (int)pLoadedControls.size());
 
@@ -86,7 +86,7 @@ namespace UILibraryUnitTests
 
             controlConfiguration.push_back(buttonSection);
 
-            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration);
+            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
 
             Assert::AreEqual(1, (int)pLoadedControls.size());
 
@@ -107,7 +107,7 @@ namespace UILibraryUnitTests
 
             controlConfiguration.push_back(buttonSection);
 
-            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration);
+            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
 
             Assert::AreEqual(1, (int)pLoadedControls.size());
 

@@ -16,9 +16,12 @@ GLView::~GLView(void)
     delete mpButtonView;
 }
 
-int GLView::Initialise(HDC hdc, unsigned int width, unsigned int height)
+int GLView::Initialise(HWND hwnd, unsigned int width, unsigned int height)
 {
-    mHDC = hdc;
+    mHDC = GetDC(hwnd);
+
+    mpLabel = new Label(60, 40, 100, "Hello world");
+    mpLabelView = new LabelView(mpLabel, hwnd);
 
     Resize(width, height);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -56,6 +59,7 @@ void GLView::Render()
     glLoadIdentity();
 
     mpButtonView->Render();
+    mpLabelView->Render();
 
     SwapBuffers(mHDC);
 }

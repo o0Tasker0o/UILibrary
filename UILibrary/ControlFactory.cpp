@@ -2,7 +2,7 @@
 #include "Button.h"
 #include "ButtonView.h"
 
-std::vector<std::pair<Control *, ControlView *>> ControlFactory::LoadControls(std::vector<IniSection> iniConfiguration)
+std::vector<std::pair<Control *, ControlView *>> ControlFactory::LoadControls(std::vector<IniSection> iniConfiguration, HWND hwnd)
 {
     std::vector<std::pair<Control *, ControlView *>> loadedControls;
 

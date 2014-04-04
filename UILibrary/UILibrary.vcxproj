@@ -19,6 +19,7 @@
     <ClInclude Include="IniFileReader.h" />
     <ClInclude Include="IniSection.h" />
     <ClInclude Include="Label.h" />
+    <ClInclude Include="LabelView.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
@@ -28,6 +29,7 @@
     <ClCompile Include="ControlView.cpp" />
     <ClCompile Include="IniFileReader.cpp" />
     <ClCompile Include="Label.cpp" />
+    <ClCompile Include="LabelView.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0D57BB79-E889-48BB-A5AD-E9BD52E8244B}</ProjectGuid>
@@ -39,7 +41,7 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -72,7 +74,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib; user32.lib; gdi32.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

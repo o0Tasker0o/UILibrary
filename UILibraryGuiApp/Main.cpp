@@ -148,7 +148,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prev, LPSTR cmd, int show)
     GetClientRect(hwnd, &windowRect);
 
     gpGLView = new GLView();
-    if (gpGLView->Initialise(hDC, windowRect.right, windowRect.bottom) == 0)
+    if (gpGLView->Initialise(hwnd, windowRect.right, windowRect.bottom) == 0)
     {
         while (true)
         {
