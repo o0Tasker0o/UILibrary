@@ -1,6 +1,7 @@
 #include "ControlFactory.h"
 #include "IniSection.h"
 #include "Button.h"
+#include "LabelView.h"
 #include "CallbackTester.h"
 
 using namespace System;
@@ -21,7 +22,7 @@ namespace UILibraryUnitTests
         }
 
         [TestMethod]
-        void ControlFactoryReturnsControlSpecifiedInIniSection()
+        void ControlFactoryReturnsButtonSpecifiedInIniSection()
         {
             IniSection buttonSection;
             buttonSection.sectionName = "Button";
@@ -42,6 +43,32 @@ namespace UILibraryUnitTests
             Assert::AreEqual(2U, pLoadedControls[0].first->mYPosition);
             Assert::AreEqual(3U, pLoadedControls[0].first->mWidth);
             Assert::AreEqual(4U, pLoadedControls[0].first->mHeight);
+        }
+
+        [TestMethod]
+        void ControlFactoryReturnsLabelSpecifiedInIniSection()
+        {
+            std::string testString = "test string";
+
+            IniSection buttonSection;
+            buttonSection.sectionName = "Label";
+            buttonSection.AddProperty("xPosition", "1");
+            buttonSection.AddProperty("yPosition", "2");
+            buttonSection.AddProperty("width", "3");
+            buttonSection.AddProperty("text", testString);
+
+            std::vector<IniSection> controlConfiguration;
+
+            controlConfiguration.push_back(buttonSection);
+
+            std::vector<std::pair<Control *, ControlView *>> pLoadedControls = ControlFactory::LoadControls(controlConfiguration, nullptr);
+
+            Assert::AreEqual(1, (int)pLoadedControls.size());
+
+            Assert::AreEqual(1U, pLoadedControls[0].first->mXPosition);
+            Assert::AreEqual(2U, pLoadedControls[0].first->mYPosition);
+            Assert::AreEqual(3U, pLoadedControls[0].first->mWidth);
+            Assert::IsTrue(testString == ((Label *) pLoadedControls[0].first)->mText);
         }
 
         [TestMethod]
