@@ -9,13 +9,12 @@ public:
     virtual void Render(void) = 0;
     virtual void Update(unsigned int xPos, unsigned int yPos, MouseButtonState leftButtonState) = 0;
 
+    virtual ~ControlView() {}
 protected:
     ControlView(Control *pControl)
     {
         mpControl = pControl;
     }
-
-    ~ControlView() {}
 
     Control *mpControl;
 

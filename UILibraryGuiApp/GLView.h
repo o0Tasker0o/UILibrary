@@ -1,6 +1,7 @@
 #include <Windows.h>
-#include "ButtonView.h"
-#include "LabelView.h"
+#include <vector>
+#include "Control.h"
+#include "ControlView.h"
 
 #ifndef GLVIEW_H
 #define GLVIEW_H
@@ -21,10 +22,8 @@ public:
     }
 private:
     HDC mHDC;
-    Button *mpButton;
-    ButtonView *mpButtonView;
-    Label *mpLabel;
-    LabelView *mpLabelView;
+
+    std::vector<std::pair<Control *, ControlView *>> mControls;
 };
 
 #endif

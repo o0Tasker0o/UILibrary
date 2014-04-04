@@ -1,27 +1,34 @@
 #include "GLView.h"
+#include "IniFileReader.h"
+#include "ControlFactory.h"
 #include <gl/GL.h>
 #include <gl/glu.h>
 
 GLView::GLView(void) : mHDC(NULL)
 {
-    mpButton = new Button(10, 20, 40, 30);
-    mpButton->SetMouseClickedCallback(this, GLView::QuitInvoker);
-
-    mpButtonView = new ButtonView(mpButton);
 }
 
 GLView::~GLView(void)
 {
-    delete mpButton;
-    delete mpButtonView;
+    std::vector<std::pair<Control *, ControlView *>>::iterator controlIterator = mControls.begin();
+
+    while (controlIterator != mControls.end())
+    {
+        delete controlIterator->second;
+        delete controlIterator->first;
+
+        controlIterator++;
+    }
 }
 
 int GLView::Initialise(HWND hwnd, unsigned int width, unsigned int height)
 {
     mHDC = GetDC(hwnd);
 
-    mpLabel = new Label(60, 40, 100, "Hello world");
-    mpLabelView = new LabelView(mpLabel, hwnd);
+    std::vector<IniSection> controlIni = IniFileReader::LoadFile("demo controls.ini");
+    mControls = ControlFactory::LoadControls(controlIni, hwnd);
+
+    mControls[0].first->SetMouseClickedCallback(this, GLView::QuitInvoker);
 
     Resize(width, height);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -58,8 +65,13 @@ void GLView::Render()
 
     glLoadIdentity();
 
-    mpButtonView->Render();
-    mpLabelView->Render();
+    std::vector<std::pair<Control *, ControlView *>>::iterator controlIterator = mControls.begin();
+
+    while (controlIterator != mControls.end())
+    {
+        controlIterator->second->Render();
+        controlIterator++;
+    }
 
     SwapBuffers(mHDC);
 }
@@ -67,5 +79,12 @@ void GLView::Render()
 void GLView::Update(int mouseX, int mouseY, bool leftButtonDown)
 {
     MouseButtonState leftButtonState = leftButtonDown ? MouseButtonState::MOUSEDOWN : MouseButtonState::MOUSEUP;
-    mpButtonView->Update(mouseX, mouseY, leftButtonState);
+
+    std::vector<std::pair<Control *, ControlView *>>::iterator controlIterator = mControls.begin();
+
+    while (controlIterator != mControls.end())
+    {
+        controlIterator->second->Update(mouseX, mouseY, leftButtonState);
+        controlIterator++;
+    }
 }
